@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
 
 export default class SignUp extends Component {
+  
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const { username, password, repeatPassword } = e.target
+    let user = {
+      email: username.value,
+      password: password.value
+    }
+    this.props.handleNewUser(user)
+    this.props.history.push('/signin')
+  }
+  
   render() {
     return(
      <div>
-       <form class='signup-form'>
+       <form className='signup-form' onSubmit={this.handleSubmit}>
             <div>
-              <label for="first-name">First name</label>
-              <input placeholder='First Name' type="text" name='first-name' id='first-name' />
-            </div>
-            <div>
-              <label for="last-name">Last name</label>
-              <input type="text" name='last-name' id='last-name' placeholder='Last Name' />
-            </div>
-            <div>
-              <label for="username">Email</label>
+              <label htmlFor="username">Email</label>
               <input type="text" name='username' id='username' />
             </div>
             <div>
-              <label for="password">Password</label>
+              <label htmlFor="password">Password</label>
               <input type="password" name='password' id='password' />
             </div>
+            <div>
+              <label htmlFor="repeatPassword">Repeat Password *</label>
+              <input type="password" className="registration__control"
+              name="repeatPassword" id="repeatPassword"/>
+       </div>
             <button type='submit'>Sign Up</button>
         </form>
      </div>

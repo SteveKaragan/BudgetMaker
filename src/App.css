@@ -56,3 +56,8 @@ section {
 section:nth-child(even) {
   background-color: #ddd;
 }
+
+input[type=text] {
+  margin-left: 8px;
+  box-sizing: border-box;
+}
