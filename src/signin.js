@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+import DataContext from './datacontext';
 
 export default class SignIn extends Component {
   
+  static contextType = DataContext;
 
   handleSubmit = (e) => {
     e.preventDefault()
     const { username, password } = e.target
-    const user = this.props.users.find(obj => obj.email === username.value);
+    const user = this.context.users.find(obj => obj.email === username.value);
     (user.password === password.value) ? this.props.history.push('/newbudget') :
     console.log('Wrong password')
   }

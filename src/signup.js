@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import DataContext from './datacontext';
 
 export default class SignUp extends Component {
   
+  static contextType = DataContext;
+
   handleSubmit = (e) => {
     e.preventDefault()
     const { username, password, repeatPassword } = e.target
@@ -9,7 +12,7 @@ export default class SignUp extends Component {
       email: username.value,
       password: password.value
     }
-    this.props.handleNewUser(user)
+    this.context.handleNewUser(user)
     this.props.history.push('/signin')
   }
   

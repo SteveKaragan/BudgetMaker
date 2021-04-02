@@ -4,7 +4,6 @@ export default class DisplayBudget extends Component {
   render() {
     const { budget } = this.props
     let arr = Object.keys(budget)
-    console.log(arr)
     return(
      <div>
        <h3>Monthly Budget</h3>

@@ -7,6 +7,7 @@ import SignUp from "./signup";
 import Instructions from "./instructions";
 import NewBudget from "./newbudget";
 import DisplayBudget from "./displaybudget";
+import DataContext from './datacontext'
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +15,8 @@ class App extends Component {
     this.state = {
       users: [{
         email: 'stevekaragan@gmail.com',
-        password: 'abc'
+        password: 'abc',
+        budget: [],
       }]
     }
   }
@@ -28,46 +30,33 @@ class App extends Component {
   }
 
   render() {
+    const contextValue = {
+      users: this.state.users,
+      handleNewUser: this.handleNewUser,
+    }
     return (
       <div>
-        <nav>
-          <li><Link to="/instructions">Instructions</Link></li>
-        </nav>
-        <main>
-          <header>
-            <Link to="/">
-              <h1>BudgetMaker</h1>
-            </Link>
-          </header>
-          <section>
-            <Route exact path="/" component={Landing} />
-            <Route path="/signin" 
-              render={({ history }) => {
-                return <SignIn 
-                history={history}
-                users={this.state.users}
-                />
-              }}
-            />
-            <Route path="/signup" 
-              render={({ history }) => {
-                return <SignUp
-                handleNewUser={this.handleNewUser}
-                history={history}
-                />
-              }} />
-            <Route path="/instructions" component={Instructions} />
-            <Route path="/newbudget" component={NewBudget} />
-            <Route path="/displayBudget" 
-              render={() => {
-                return <DisplayBudget
-                budget={this.props.props}
-                />
-              }}
-            />
-          </section>
-        </main>
-        {/* <footer>Footer</footer> */}
+        <DataContext.Provider value={contextValue}>
+          <nav>
+            <li><Link to="/instructions">Instructions</Link></li>
+          </nav>
+          <main>
+            <header>
+              <Link to="/">
+                <h1>BudgetMaker</h1>
+              </Link>
+            </header>
+            <section>
+              <Route exact path="/" component={Landing} />
+              <Route path="/signin" component={SignIn}/>
+              <Route path="/signup" component={SignUp}/>
+              <Route path="/instructions" component={Instructions} />
+              <Route path="/newbudget" component={NewBudget} />
+              {/* <Route path="/displayBudget" component={DisplayBudget}/> */}
+            </section>
+          </main>
+          {/* <footer>Footer</footer> */}
+        </DataContext.Provider>
       </div>
     );
   }
