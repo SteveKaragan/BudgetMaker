@@ -4,6 +4,7 @@ import "./App.css";
 import Landing from "./landing";
 import SignIn from "./signin";
 import SignUp from "./signup";
+import budget from "./store";
 import Instructions from "./instructions";
 import NewBudget from "./newbudget";
 import DisplayBudget from "./displaybudget";
@@ -16,24 +17,47 @@ class App extends Component {
       users: [{
         email: 'stevekaragan@gmail.com',
         password: 'abc',
-        budget: [],
-      }]
+        budget: budget,
+      }],
+      currentUser: ''
     }
   }
 
+  //discuss with Jeremy ...
   handleNewUser = (user) => {
     let newState = {
-      users: [this.state.users]
+      users: this.state.users,
     }
     newState.users.push(user)
     this.setState(newState)
   }
 
+  handleSetCurrentUser = (user) => {
+    let newState = {
+      users: this.state.users,
+      currentUser: user.email
+    }
+    this.setState(newState)
+  }
+
+  handleNewBudget = (user) => {
+    const newUsers = this.state.users.filter(person => person.email !== user.email)
+    newUsers.push(user)
+    this.setState({
+      users: newUsers,
+      currentUser: user.email
+    }) 
+  }
+
   render() {
     const contextValue = {
       users: this.state.users,
+      currentUser: this.state.currentUser,
       handleNewUser: this.handleNewUser,
+      handleSetCurrentUser: this.handleSetCurrentUser,
+      handleNewBudget: this.handleNewBudget
     }
+    console.log(this.state)
     return (
       <div>
         <DataContext.Provider value={contextValue}>

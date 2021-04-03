@@ -9,9 +9,16 @@ export default class SignIn extends Component {
     e.preventDefault()
     const { username, password } = e.target
     const user = this.context.users.find(obj => obj.email === username.value);
-    (user.password === password.value) ? this.props.history.push('/newbudget') :
-    console.log('Wrong password')
+    if (user.password === password.value) {
+      this.context.handleSetCurrentUser(user)
+      this.props.history.push('/newbudget')
+    } else {
+      //How do I get this into JSX?
+      console.log('Wrong Password')
+    }
   }
+
+  
 
   render() {
     return(
