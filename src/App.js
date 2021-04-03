@@ -57,6 +57,7 @@ class App extends Component {
       handleSetCurrentUser: this.handleSetCurrentUser,
       handleNewBudget: this.handleNewBudget
     }
+
     return (
       <div>
         <DataContext.Provider value={contextValue}>

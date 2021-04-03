@@ -9,6 +9,7 @@ export default class SignUp extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const { username, password, repeatPassword } = e.target
+    //budget was just budget: budget
     let user = {
       email: username.value,
       password: password.value,
