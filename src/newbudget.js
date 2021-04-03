@@ -12,6 +12,7 @@ export default class NewBudget extends Component {
     const user = this.context.users.find(user => user.email === currentUser)
     user.budget.accounts.map(obj => obj.amount = e.target[`${obj.accountName}`].value)
     this.context.handleNewBudget(user)
+    this.props.history.push('/displaybudget')
   }
 
   render() {

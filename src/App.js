@@ -57,7 +57,6 @@ class App extends Component {
       handleSetCurrentUser: this.handleSetCurrentUser,
       handleNewBudget: this.handleNewBudget
     }
-    console.log(this.state)
     return (
       <div>
         <DataContext.Provider value={contextValue}>
@@ -76,7 +75,7 @@ class App extends Component {
               <Route path="/signup" component={SignUp}/>
               <Route path="/instructions" component={Instructions} />
               <Route path="/newbudget" component={NewBudget} />
-              {/* <Route path="/displayBudget" component={DisplayBudget}/> */}
+              <Route path="/displayBudget" component={DisplayBudget}/>
             </section>
           </main>
           {/* <footer>Footer</footer> */}
