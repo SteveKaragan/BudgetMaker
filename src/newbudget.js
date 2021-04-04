@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DataContext from './datacontext';
+import NewBudAccounts from './newbudaccounts';
 
 
 
@@ -11,19 +12,18 @@ export default class NewBudget extends Component {
     const { currentUser } = this.context
     const user = this.context.users.find(user => user.email === currentUser)
     user.budget.accounts.map(obj => obj.amount = e.target[`${obj.accountName}`].value)
-    this.context.handleNewBudget(user)
+    //this.context.handleNewBudget(user)
     this.props.history.push('/displaybudget')
   }
 
   render() {
     const { currentUser } = this.context
     const user = this.context.users.find(user => user.email === currentUser)
-    let budget = user.budget.accounts
-    let inputs = budget.map(account => {
+    let accounts = user.budget.accounts
+    let inputs = user.budget.types.map(type => {
       return (
-      <div key={account.account}>
-        <label htmlFor={account.accountName}>{account.accountName}</label>
-        <input type="number" name={account.accountName} placeholder="1"/>
+      <div >
+        <NewBudAccounts type={type} accounts={accounts} key={type}/>
       </div>
       )
     })

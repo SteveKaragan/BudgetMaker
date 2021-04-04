@@ -34,7 +34,7 @@ const budget = {
     {
       pl: 20,
       type: 600,
-      name: 'Medical/Healthcare'
+      name: 'Medical'
     },
     {
       pl: 20,
@@ -44,7 +44,7 @@ const budget = {
     {
       pl: 20,
       type: 800,
-      name: 'Household Items/Supplies'
+      name: 'Household Supplies'
     },
     {
       pl: 20,
@@ -74,7 +74,7 @@ const budget = {
     {
       pl: 20,
       type: 1400,
-      name: 'Gifts/Donations'
+      name: 'Donations'
     },
     {
       pl: 20,
@@ -94,14 +94,14 @@ const budget = {
       pl: 20,
       type: 100,
       account: 1009,
-      accountName: 'Mortgage or Rent',
+      accountName: 'Rent',
       amount: 0
     },
     {
       pl: 20,
       type: 100,
       account: 1010,
-      accountName: 'Property Taxes',
+      accountName: 'Prop. Taxes',
       amount: 0
     },
     {
@@ -122,7 +122,7 @@ const budget = {
       pl: 20,
       type: 200,
       account: 1014,
-      accountName: 'Public Transportation',
+      accountName: 'Public Transit',
       amount: 0
     },
     {
@@ -157,7 +157,7 @@ const budget = {
       pl: 20,
       type: 200,
       account: 1019,
-      accountName: 'Maintenance & Oil',
+      accountName: 'Car Maintenance',
       amount: 0
     },
     {
@@ -178,7 +178,7 @@ const budget = {
       pl: 20,
       type: 200,
       account: 1022,
-      accountName: 'Registration & Fees',
+      accountName: 'Registration',
       amount: 0
     },
     {
@@ -332,14 +332,14 @@ const budget = {
       pl: 20,
       type: 700,
       account: 1049,
-      accountName: 'Homeowner/Rental Insurance',
+      accountName: 'Homeowner Ins.',
       amount: 0
     },
     {
       pl: 20,
       type: 700,
       account: 1050,
-      accountName: 'Home warranty or protection Plan',
+      accountName: 'Home warranty',
       amount: 0
     },
     {
@@ -388,7 +388,7 @@ const budget = {
       pl: 20,
       type: 900,
       account: 1059,
-      accountName: 'Gym memberships',
+      accountName: 'Gym',
       amount: 0
     },
     {
@@ -591,7 +591,7 @@ const budget = {
       pl: 20,
       type: 1500,
       account: 1094,
-      accountName: 'Subscriptions (Netflix)',
+      accountName: 'Subscriptions',
       amount: 0
     },
   ],
