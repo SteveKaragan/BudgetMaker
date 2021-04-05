@@ -13,7 +13,7 @@ export default class SignUp extends Component {
     let user = {
       email: username.value,
       password: password.value,
-      budget: budget
+      budget: {...budget}
     }
     this.context.handleNewUser(user)
     this.props.history.push('/signin')

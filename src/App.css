@@ -63,7 +63,7 @@ section:nth-child(even) {
   box-sizing: border-box;
 } */
 
-.display span{
+.display span {
   max-width: 100%;
 	padding: 20px 12px 10px 20px;
 }
@@ -108,11 +108,9 @@ section:nth-child(even) {
 }
 
 .display-account {
-	margin: 0px 0px 15px 0px;
-  font-size: 100px;
-  color: red;
+	margin: 0px 0px 0px 0px;
   text-align: left;
-  width: 200px;
+  width: 300px;
 	font-weight: bold;
 	float: left;
 	padding-top: 8px;
@@ -120,7 +118,7 @@ section:nth-child(even) {
 }
 
 .display-amount {
-  width: 20%;
+  max-width: 20%;
   box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;

@@ -22,11 +22,11 @@ export default class DisplayBudget extends Component {
     let net = income[0].amount - total
 
     return(
-     <div>
+     <div className='display'>
        <h3>Monthly Budget</h3>
        {display}
-       <h3><span>{`Total Expense`}</span><span>{total}</span></h3>
-       <h3><span>{`Surplus/(Deficit)`}</span><span>{net}</span></h3>
+       <h3><span>Total Expense</span><span>{total}</span></h3>
+       <h3><span>Surplus/(Deficit)</span><span>{net}</span></h3>
      </div>
     );
   };

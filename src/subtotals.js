@@ -11,8 +11,9 @@ export default class SubTotal extends Component {
     let accountDisplay = accounts.map(account => {
       return (
         <div key={account.account}>
-          <span className='diplay-account'>{account.accountName}</span>
-          <span className='diplay-amount'>{Number(account.amount)}</span>
+          <span className='display-account'>{account.accountName}</span>
+          <br/>
+          <span className='display-amount'>{Number(account.amount)}</span>
         </div>
       )
     })
