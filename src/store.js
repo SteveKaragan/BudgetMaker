@@ -591,7 +591,7 @@ const budget = {
       pl: 20,
       type: 1500,
       account: 1094,
-      accountName: 'Subscriptions',
+      accountName: 'Memberships',
       amount: 0
     },
   ],

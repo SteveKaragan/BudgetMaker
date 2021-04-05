@@ -63,7 +63,7 @@ section:nth-child(even) {
   box-sizing: border-box;
 } */
 
-.display {
+.display span{
   max-width: 100%;
 	padding: 20px 12px 10px 20px;
 }
@@ -107,7 +107,7 @@ section:nth-child(even) {
 	outline: none;	
 }
 
-#display-account {
+.display-account {
 	margin: 0px 0px 15px 0px;
   font-size: 100px;
   color: red;
@@ -119,7 +119,7 @@ section:nth-child(even) {
 	padding-right: 1px;
 }
 
-#display-amount {
+.display-amount {
   width: 20%;
   box-sizing: border-box;
 	-webkit-box-sizing: border-box;

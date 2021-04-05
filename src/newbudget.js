@@ -22,8 +22,8 @@ export default class NewBudget extends Component {
     let accounts = user.budget.accounts
     let inputs = user.budget.types.map(type => {
       return (
-      <div >
-        <NewBudAccounts type={type} accounts={accounts} key={type}/>
+      <div key={type.type}>
+        <NewBudAccounts type={type} accounts={accounts}/>
       </div>
       )
     })

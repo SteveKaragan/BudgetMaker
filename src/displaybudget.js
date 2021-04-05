@@ -12,7 +12,7 @@ export default class DisplayBudget extends Component {
     let accounts = user.budget.accounts
     let display = user.budget.types.map(type => { 
       return (
-         <SubTotal type={type} accounts={accounts}/>
+         <SubTotal key={type.type} type={type} accounts={accounts}/>
        )
     })
     
