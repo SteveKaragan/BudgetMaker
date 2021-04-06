@@ -2,28 +2,26 @@ import React, { Component } from 'react';
 import DataContext from './datacontext';
 import NewBudAccounts from './newbudaccounts';
 
-
+//will need to post newBudget
 
 export default class NewBudget extends Component {
   static contextType = DataContext;
-  //This should all be working off of Account
   handleSubmit = (e) => {
     e.preventDefault();
-    const { currentUser } = this.context
-    const user = this.context.users.find(user => user.email === currentUser)
-    user.budget.accounts.map(obj => obj.amount = e.target[`${obj.accountName}`].value)
-    //this.context.handleNewBudget(user)
+    const { budget } = this.context
+    let newBudget = [...budget]
+    newBudget.forEach(obj => obj.amount = e.target[`${obj.accountName}`].value)
+    this.context.handleNewBudget(newBudget)
     this.props.history.push('/displaybudget')
   }
 
   render() {
-    const { currentUser } = this.context
-    const user = this.context.users.find(user => user.email === currentUser)
-    let accounts = user.budget.accounts
-    let inputs = user.budget.types.map(type => {
+    const { budget } = this.context
+    const { types } = this.context
+    let inputs = types.map(type => {
       return (
       <div key={type.type}>
-        <NewBudAccounts type={type} accounts={accounts}/>
+        <NewBudAccounts type={type} budget={budget}/>
       </div>
       )
     })

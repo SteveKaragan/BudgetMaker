@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import budget from './store'
+import accounts from './accounts'
 import DataContext from './datacontext';
 
 export default class SignUp extends Component {
@@ -10,12 +10,12 @@ export default class SignUp extends Component {
     e.preventDefault()
     const { username, password, repeatPassword } = e.target
     //budget was just budget: budget
-    let user = {
+    let newUser = {
       email: username.value,
       password: password.value,
-      budget: {...budget}
+      budget: accounts
     }
-    this.context.handleNewUser(user)
+    this.context.handleNewUser(newUser)
     this.props.history.push('/signin')
   }
   

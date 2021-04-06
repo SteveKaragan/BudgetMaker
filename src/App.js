@@ -4,57 +4,52 @@ import "./App.css";
 import Landing from "./landing";
 import SignIn from "./signin";
 import SignUp from "./signup";
-import budget from "./store";
+import MainMenu from "./mainmenu"
 import Instructions from "./instructions";
 import NewBudget from "./newbudget";
 import DisplayBudget from "./displaybudget";
-import DataContext from './datacontext'
+import DataContext from './datacontext';
+import accounts from './accounts';
+import types  from './types'
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      users: [{
-        email: 'stevekaragan@gmail.com',
-        password: 'abc',
-        budget: budget,
-      }],
-      currentUser: ''
+    this.state = {  
+      user: '',
+      password: '',
+      budget: [],
+      types,
     }
   }
 
-  //discuss with Jeremy ...
-  handleNewUser = (user) => {
+  handleNewUser = (newUser) => {
     let newState = {
-      users: this.state.users,
-    }
-    newState.users.push(user)
-    this.setState(newState)
-  }
-
-  handleSetCurrentUser = (user) => {
-    let newState = {
-      users: this.state.users,
-      currentUser: user.email
+      user: newUser.email,
+      password: newUser.password,
+      budget: accounts,
+      types,
     }
     this.setState(newState)
   }
 
-  handleNewBudget = (user) => {
-    const newUsers = this.state.users.filter(person => person.email !== user.email)
-    newUsers.push(user)
-    this.setState({
-      users: newUsers,
-      currentUser: user.email
-    }) 
+  handleNewBudget = (newBudget) => {
+    const newState = {  
+      user: this.state.user,
+      password: this.state.password,
+      budget: newBudget,
+      types,
+    }
+    this.setState(newState) 
   }
 
   render() {
     const contextValue = {
-      users: this.state.users,
-      currentUser: this.state.currentUser,
+      user: this.state.user,
+      password: this.state.password,
+      budget: this.state.budget,
+      types: this.state.types,
       handleNewUser: this.handleNewUser,
-      handleSetCurrentUser: this.handleSetCurrentUser,
       handleNewBudget: this.handleNewBudget
     }
     return (
@@ -65,17 +60,16 @@ class App extends Component {
           </nav>
           <main>
             <header>
-              <Link to="/">
                 <h1>BudgetMaker</h1>
-              </Link>
             </header>
             <section>
               <Route exact path="/" component={Landing} />
               <Route path="/signin" component={SignIn}/>
               <Route path="/signup" component={SignUp}/>
+              <Route path="/mainmenu" component={MainMenu} />
               <Route path="/instructions" component={Instructions} />
               <Route path="/newbudget" component={NewBudget} />
-              <Route path="/displayBudget" component={DisplayBudget}/>
+              <Route path="/displaybudget" component={DisplayBudget}/>
             </section>
           </main>
           {/* <footer>Footer</footer> */}

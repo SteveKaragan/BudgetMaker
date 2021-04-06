@@ -1,10 +1,11 @@
 import React from 'react'
 
 const DataContext = React.createContext({
-  users: [],
-  currentUser: '',
+  user: '',
+  password: '',
+  budget: [],
+  types: [],
   handleNewUser: () => {},
-  handleSetCurrentUser: () => {},
   handleNewBudget: () => {}
 })
 

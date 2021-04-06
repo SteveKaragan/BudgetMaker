@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DataContext from './datacontext';
+import { numFormat } from './budgethelpers'
 
 export default class SubTotal extends Component {
 
@@ -7,13 +8,13 @@ export default class SubTotal extends Component {
 
   render() {
     let type = this.props.type;
-    let accounts = this.props.accounts.filter(account => account.type === type.type)
+    let accounts = this.props.budget.filter(account => account.type === type.type)
     let accountDisplay = accounts.map(account => {
       return (
         <div key={account.account}>
           <span className='display-account'>{account.accountName}</span>
           <br/>
-          <span className='display-amount'>{Number(account.amount)}</span>
+          <span className='display-amount'>{numFormat(account.amount)}</span>
         </div>
       )
     })
@@ -22,7 +23,7 @@ export default class SubTotal extends Component {
      <div className='display'>
        <h4 className='display-heading'>{type.name}</h4>
         {accountDisplay}
-       <h4><span>{`Subtotal ${type.name}`}</span><span>{subtotal}</span></h4>
+       <h4><span>{`Subtotal ${type.name}`}</span><span>{numFormat(subtotal)}</span></h4>
      </div>
     );
   };
