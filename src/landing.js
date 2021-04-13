@@ -6,9 +6,10 @@ export default class Landing extends Component {
     return(
      <div>
        <p>Start here</p>
-       <Link to="/signup">Sign Up</Link>
-       <br/>
        <Link to="/signin">Sign In</Link>
+       <br/>
+       <p>Not a user yet?</p>
+       <Link to="/signup">Sign Up</Link>
      </div>
     );
   };
