@@ -17,10 +17,28 @@ class App extends Component {
     super(props);
     this.state = {  
       user: '',
-      password: '',
       budget: [],
       types,
+      password: '',
     }
+  }
+
+  handleUpdateAccountValue = (account) => {
+    let accountNum = Number(account.id)
+    let accountVal = Number(account.value)
+    let newBudget = [...this.state.budget]
+    newBudget.map(obj => {
+      if (obj.account === accountNum) obj.amount = accountVal
+      return obj
+    });
+    console.log(newBudget)
+    let newState = {
+      user: this.state.user,
+      password: this.state.password,
+      budget: newBudget,
+      types
+      }
+    this.setState(newState)
   }
 
   handleNewUser = (newUser) => {
@@ -50,8 +68,10 @@ class App extends Component {
       budget: this.state.budget,
       types: this.state.types,
       handleNewUser: this.handleNewUser,
-      handleNewBudget: this.handleNewBudget
+      handleNewBudget: this.handleNewBudget,
+      handleUpdateAccountValue: this.handleUpdateAccountValue
     }
+    console.log(this.state.budget)
     return (
       <div>
         <DataContext.Provider value={contextValue}>

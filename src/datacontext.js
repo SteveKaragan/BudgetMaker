@@ -6,7 +6,8 @@ const DataContext = React.createContext({
   budget: [],
   types: [],
   handleNewUser: () => {},
-  handleNewBudget: () => {}
+  handleNewBudget: () => {},
+  handleUpdateAccountValue: () => {},
 })
 
 export default DataContext
