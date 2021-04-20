@@ -15,7 +15,7 @@ export default class SignUp extends Component {
       password: password.value,
       budget: accounts
     }
-    this.context.handleNewUser(newUser)
+    //this.context.handleNewUser(newUser)
     this.props.history.push('/mainmenu')
   }
   

@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
 import DataContext from './datacontext';
 import NewBudAccounts from './newbudaccounts';
+import { NavLink } from 'react-router-dom';
+import { numFormat } from './budgethelpers';
 
-//will need to post newBudget
 
 export default class NewBudget extends Component {
   static contextType = DataContext;
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const { budget } = this.context
-    let newBudget = [...budget]
-    newBudget.forEach(obj => obj.amount = e.target[`${obj.accountName}`].value)
-    this.context.handleNewBudget(newBudget)
-    this.props.history.push('/displaybudget')
-  }
 
   render() {
     const { budget } = this.context
@@ -21,20 +14,33 @@ export default class NewBudget extends Component {
     let inputs = types.map(type => {
       return (
       <div key={type.type}>
-        <NewBudAccounts type={type} budget={budget}/>
+        <NewBudAccounts 
+        type={type} 
+        budget={budget}
+        />
       </div>
       )
     })
+    let totalExp = budget.reduce((accum, cv) => {
+        if (cv.pl !== 10) {
+        return accum + cv.amount
+      }
+        return accum
+      }, 0)
+    let incomeObj = budget.find(obj => obj.account === 1001)
     return(
       <div>
-          <form className='main-input' onSubmit={this.handleSubmit}>
-            {inputs}
-            <div>
-              <br/>
-              <br/>
-              <button>Submit</button>
-            </div>
-          </form>
+        <form className='main-input'>
+          {inputs}
+          <div>
+            <br/>
+            <span>Total Expense {numFormat(totalExp)}</span>
+            <br/>
+            <span>Surplus/(Deficit) {numFormat(incomeObj.amount - totalExp)}</span>
+          </div>
+        </form>
+        <br/>
+        <NavLink to={'/displaybudget'} >Display Current Budget</NavLink>
       </div>
     );
   };

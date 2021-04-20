@@ -17,35 +17,17 @@ class App extends Component {
     super(props);
     this.state = {  
       user: '',
-      budget: [],
+      budget: accounts,
       types,
       password: '',
     }
-  }
-
-  handleUpdateAccountValue = (account) => {
-    let accountNum = Number(account.id)
-    let accountVal = Number(account.value)
-    let newBudget = [...this.state.budget]
-    newBudget.map(obj => {
-      if (obj.account === accountNum) obj.amount = accountVal
-      return obj
-    });
-    console.log(newBudget)
-    let newState = {
-      user: this.state.user,
-      password: this.state.password,
-      budget: newBudget,
-      types
-      }
-    this.setState(newState)
   }
 
   handleNewUser = (newUser) => {
     let newState = {
       user: newUser.email,
       password: newUser.password,
-      budget: accounts,
+      budget: newUser.budget,
       types,
     }
     this.setState(newState)
@@ -60,6 +42,39 @@ class App extends Component {
     }
     this.setState(newState) 
   }
+//Handles onChange on Form
+  handleUpdateAccountValue = (account) => {
+    let accountNum = Number(account.id)
+    let accountVal = Number(account.value)
+    let newBudget = [...this.state.budget]
+    newBudget.map(obj => {
+      if (obj.account === accountNum) obj.amount = accountVal
+      return obj
+    });
+    let newState = {
+      user: this.state.user,
+      password: this.state.password,
+      budget: newBudget,
+      types: this.state.types
+      }
+    this.setState(newState)
+  }
+
+  handleTypeVisibility = (type) => {
+    console.log(type)
+    let newTypes = [...this.state.types]
+    newTypes.map(obj => {
+      if (obj.type === type) obj.visible = !obj.visible
+      return obj
+    });
+    let newState = {
+      user: this.state.user,
+      password: this.state.password,
+      budget: this.state.budget,
+      types: newTypes
+      }
+    this.setState(newState)
+  }
 
   render() {
     const contextValue = {
@@ -69,7 +84,8 @@ class App extends Component {
       types: this.state.types,
       handleNewUser: this.handleNewUser,
       handleNewBudget: this.handleNewBudget,
-      handleUpdateAccountValue: this.handleUpdateAccountValue
+      handleUpdateAccountValue: this.handleUpdateAccountValue,
+      handleTypeVisibility: this.handleTypeVisibility
     }
     console.log(this.state.budget)
     return (
