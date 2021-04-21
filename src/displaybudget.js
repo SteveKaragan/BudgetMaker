@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 export default class DisplayBudget extends Component {
 
   static contextType = DataContext;
-  //will need to fetch budget & type
+
   render() {
     const { budget } = this.context
     const { types } = this.context

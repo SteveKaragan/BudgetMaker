@@ -30,14 +30,9 @@ export default class NewBudAccounts extends Component {
     return (
       <div className="display">
         <h4 className="display-heading">
-          <span>
-            <button onClick={() => this.context.handleTypeVisibility(type.type)}>
-              {(type.visible) ? "-" : "+"}
-            </button>
-          </span>
           {type.name}
         </h4>
-        {(type.visible) === true ? accountDisplay : null}
+        {accountDisplay}
         <br />
         <span>{type.name} Subtotal</span>
         <span>{numFormat(subtotal)}</span>

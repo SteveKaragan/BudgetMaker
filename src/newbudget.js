@@ -7,7 +7,7 @@ import { numFormat } from './budgethelpers';
 
 export default class NewBudget extends Component {
   static contextType = DataContext;
-
+  
   render() {
     const { budget } = this.context
     const { types } = this.context

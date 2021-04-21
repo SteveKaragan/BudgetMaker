@@ -21,8 +21,15 @@ export default class SubTotal extends Component {
     let subtotal = accounts.reduce((accum, account) => accum + Number(account.amount), 0)
     return(
      <div className='display'>
-       <h4 className='display-heading'>{type.name}</h4>
-        {accountDisplay}
+      <h4 className='display-heading'>
+        <span>
+          <button onClick={() => this.context.handleTypeVisibility(type.type)}>
+            {(type.visible) ? "-" : "+"}
+          </button>
+        </span>
+         {type.name}
+      </h4>
+      {(type.visible) === true ? accountDisplay : null}
        <h4><span>{`Subtotal ${type.name}`}</span><span>{numFormat(subtotal)}</span></h4>
      </div>
     );

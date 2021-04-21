@@ -8,6 +8,7 @@ import MainMenu from "./mainmenu"
 import Instructions from "./instructions";
 import NewBudget from "./newbudget";
 import DisplayBudget from "./displaybudget";
+import TypeEntry from "./typeentry";
 import DataContext from './datacontext';
 import accounts from './accounts';
 import types  from './types'
@@ -15,6 +16,7 @@ import types  from './types'
 class App extends Component {
   constructor(props) {
     super(props);
+    //should I take user & password out of state?
     this.state = {  
       user: '',
       budget: accounts,
@@ -42,7 +44,7 @@ class App extends Component {
     }
     this.setState(newState) 
   }
-//Handles onChange on Form
+//This works from Newbudget
   handleUpdateAccountValue = (account) => {
     let accountNum = Number(account.id)
     let accountVal = Number(account.value)
@@ -61,7 +63,6 @@ class App extends Component {
   }
 
   handleTypeVisibility = (type) => {
-    console.log(type)
     let newTypes = [...this.state.types]
     newTypes.map(obj => {
       if (obj.type === type) obj.visible = !obj.visible
@@ -75,6 +76,10 @@ class App extends Component {
       }
     this.setState(newState)
   }
+  //this is the handle submit 
+  handleUpdateBudget = (e) => {
+      console.log(e)
+  }
 
   render() {
     const contextValue = {
@@ -85,7 +90,8 @@ class App extends Component {
       handleNewUser: this.handleNewUser,
       handleNewBudget: this.handleNewBudget,
       handleUpdateAccountValue: this.handleUpdateAccountValue,
-      handleTypeVisibility: this.handleTypeVisibility
+      handleTypeVisibility: this.handleTypeVisibility,
+      handleUpdateBudget: this.handleUpdateBudget
     }
     console.log(this.state.budget)
     return (
@@ -105,6 +111,17 @@ class App extends Component {
               <Route path="/mainmenu" component={MainMenu} />
               <Route path="/instructions" component={Instructions} />
               <Route path="/newbudget" component={NewBudget} />
+              <Route 
+                path="/typeentry/:type" 
+                render={({ match }) => {
+                  return <TypeEntry 
+                    budget={this.state.budget}
+                    types={this.state.types}
+                    match={match}
+                  />
+                }} 
+                
+                />
               <Route path="/displaybudget" component={DisplayBudget}/>
             </section>
           </main>
