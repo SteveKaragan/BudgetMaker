@@ -14,16 +14,16 @@ export default class TypeEntry extends Component {
       }
     }
   
-  //could not use context to set state, so passed props, 
-  //I think it is a binding issue?
   static contextType = DataContext;
+
+  
 
   handleChange = (e) => {
     console.log(e.target.value)
     console.log(e.target.id)
     let newBudget = this.state.budget.map( account => {
-      if (account.account === e.target.id) {
-        account.amount = e.target.value
+      if (account.account === Number(e.target.id)) {
+        account.amount = Number(e.target.value)
       }
       return account
     })
@@ -32,13 +32,22 @@ export default class TypeEntry extends Component {
       types: this.state.types,
       typeNum: this.state.typeNum,
     })
+    
   }
 
   handleSubmit = (e) => {
-    console.log(e.target)
+    e.preventDefault();
+    console.log(this.state.budget)
+    console.log(e.target["Net Pay"].value)
+    //this.context.handleUpdateBudget(e)
+  }
+
+  componentDidMount() {
+    
   }
   
   render() {
+    console.log(this.state.budget)
     let type = this.state.types.find(
       (type) => type.type === Number(this.state.typeNum)
     );
@@ -72,17 +81,16 @@ export default class TypeEntry extends Component {
         <h4 className="display-heading">
           {type.name}
         </h4>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           {accountDisplay}
           <br />
           <span>{type.name} Subtotal</span>
           <span>{numFormat(subtotal)}</span>
           <br />
-          <button type='submit' onSubmit={e => this.context.handleUpdateBudget(e)}>Submit</button>
+          <button type='submit'>Submit</button>
         </form>
         {/* NavLink not working */}
         <NavLink to={`/typeentry/${nextType}`}>Next</NavLink>
-        
       </div>
     );
   }

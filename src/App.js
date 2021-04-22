@@ -93,7 +93,6 @@ class App extends Component {
       handleTypeVisibility: this.handleTypeVisibility,
       handleUpdateBudget: this.handleUpdateBudget
     }
-    console.log(this.state.budget)
     return (
       <div>
         <DataContext.Provider value={contextValue}>
