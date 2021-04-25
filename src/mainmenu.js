@@ -15,6 +15,8 @@ export default class MainMenu extends Component {
        <br/>
        <NavLink to={`/typeentry/10`}>Enter Budget</NavLink>
        <br/>
+       <NavLink to={`/typeentry/100`}>Enter Next Budget</NavLink>
+       <br/>
        <NavLink to={'/newbudget'} >Create New Budget</NavLink>
        <br/>
        <NavLink to={'/newBudget'} >Update Current Budget</NavLink>

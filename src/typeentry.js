@@ -6,21 +6,16 @@ import { NavLink } from 'react-router-dom';
 export default class TypeEntry extends Component {
     constructor(props) {
       super(props)
-      //discuss datatransformations
       this.state = {
-        budget: this.props.budget,
-        types: this.props.types,
-        typeNum: this.props.match.params.type,
+        budget: [],
+        types: [],
+        typeNum: '',
       }
     }
   
   static contextType = DataContext;
 
-  
-
   handleChange = (e) => {
-    console.log(e.target.value)
-    console.log(e.target.id)
     let newBudget = this.state.budget.map( account => {
       if (account.account === Number(e.target.id)) {
         account.amount = Number(e.target.value)
@@ -32,33 +27,33 @@ export default class TypeEntry extends Component {
       types: this.state.types,
       typeNum: this.state.typeNum,
     })
-    
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.budget)
-    console.log(e.target["Net Pay"].value)
-    //this.context.handleUpdateBudget(e)
+    this.context.handleUpdateBudget(this.state.types, this.state.budget)
   }
 
   componentDidMount() {
+    const { budget } = this.context
+    const { types } = this.context
+    let type = types.find(
+      (type) => type.type === Number(this.props.match.params.type)
+    );
+    let nextIdx = types.findIndex(type => type.type === Number(this.props.match.params.type)) + 1;
+    let typeNum = (types[nextIdx]) ? String(types[nextIdx].type) : 0
+    const typeBudget = budget.filter((account) => account.type === type.type)
+    this.setState({
+      budget: typeBudget,
+      types: type,
+      typeNum,
+    })
     
   }
   
   render() {
-    console.log(this.state.budget)
-    let type = this.state.types.find(
-      (type) => type.type === Number(this.state.typeNum)
-    );
-    let accounts = this.state.budget.filter(
-      (account) => account.type === type.type
-    );
-    let subtotal = accounts.reduce((accum, cv) => accum + cv.amount, 0);
-    let nextIdx = this.state.types.findIndex(type => type.type === Number(this.state.typeNum)) + 1;
-    let nextType = this.state.types[nextIdx].type
-    
-    let accountDisplay = accounts.map((account) => {
+    let subtotal = this.state.budget.reduce((accum, cv) => accum + cv.amount, 0);
+    let accountDisplay = this.state.budget.map((account) => {
       return ( 
         <div key={account.account}>
           <label htmlFor={account.accountName}>
@@ -67,11 +62,10 @@ export default class TypeEntry extends Component {
           <input
             className="display-field"
             id={account.account}
-            //value={account.amount}
+            value={account.amount || ''} 
             onChange={this.handleChange}
             type="number"
             name={account.accountName}
-            //onBlur={(e) => this.context.handleUpdateAccountValue(e.target)}
           />
         </div>
       );
@@ -79,19 +73,24 @@ export default class TypeEntry extends Component {
     return (
       <div className="display">
         <h4 className="display-heading">
-          {type.name}
+          {this.state.types.name}
         </h4>
         <form onSubmit={this.handleSubmit}>
           {accountDisplay}
           <br />
-          <span>{type.name} Subtotal</span>
+          <span>{this.state.types.name} Subtotal</span>
           <span>{numFormat(subtotal)}</span>
           <br />
           <button type='submit'>Submit</button>
         </form>
         {/* NavLink not working */}
-        <NavLink to={`/typeentry/${nextType}`}>Next</NavLink>
+        <NavLink to={`/typeentry/${this.state.typeNum}`}>Next</NavLink>
+        <br/>
+        <NavLink to={`/displaybudget`}>Display Budget</NavLink>
+        <br/>
+        <NavLink to={`/mainmenu`}>Main Menu</NavLink>
       </div>
     );
   }
 }
+

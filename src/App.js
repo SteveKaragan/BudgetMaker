@@ -44,7 +44,7 @@ class App extends Component {
     }
     this.setState(newState) 
   }
-//This works from Newbudget
+//This works from Newbudget(big form)
   handleUpdateAccountValue = (account) => {
     let accountNum = Number(account.id)
     let accountVal = Number(account.value)
@@ -77,8 +77,15 @@ class App extends Component {
     this.setState(newState)
   }
   //this is the handle submit 
-  handleUpdateBudget = (e) => {
-      console.log(e)
+  handleUpdateBudget = (type, typeBudget) => {
+    let removeType = this.state.budget.filter(account => account.type !== type.type)
+    let newBudget = typeBudget.concat(removeType)
+    this.setState({
+      user: this.state.user,
+      budget: newBudget,
+      types: this.state.types,
+      password: this.state.password,
+    })
   }
 
   render() {
@@ -110,17 +117,7 @@ class App extends Component {
               <Route path="/mainmenu" component={MainMenu} />
               <Route path="/instructions" component={Instructions} />
               <Route path="/newbudget" component={NewBudget} />
-              <Route 
-                path="/typeentry/:type" 
-                render={({ match }) => {
-                  return <TypeEntry 
-                    budget={this.state.budget}
-                    types={this.state.types}
-                    match={match}
-                  />
-                }} 
-                
-                />
+              <Route path="/typeentry/:type" component={TypeEntry}/>
               <Route path="/displaybudget" component={DisplayBudget}/>
             </section>
           </main>
