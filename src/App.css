@@ -134,6 +134,10 @@ section:nth-child(even) {
 	outline: none;	
 }
 
+.display-chart {
+  margin-left: 2%;
+}
+
 
 
 

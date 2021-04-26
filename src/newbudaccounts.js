@@ -4,7 +4,7 @@ import { numFormat } from "./budgethelpers";
 
 export default class NewBudAccounts extends Component {
   static contextType = DataContext;
-  
+
   render() {
     let type = this.props.type;
     let accounts = this.props.budget.filter(
@@ -29,9 +29,7 @@ export default class NewBudAccounts extends Component {
     });
     return (
       <div className="display">
-        <h4 className="display-heading">
-          {type.name}
-        </h4>
+        <h4 className="display-heading">{type.name}</h4>
         {accountDisplay}
         <br />
         <span>{type.name} Subtotal</span>

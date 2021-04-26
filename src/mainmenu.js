@@ -1,31 +1,25 @@
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import DataContext from './datacontext';
+import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
+import DataContext from "./datacontext";
 
 export default class MainMenu extends Component {
-  
   static contextType = DataContext;
 
   render() {
-    return(
-     <div>
-       <h2>Main Menu</h2>
-       <h3>Time to make your monthly budget!</h3>
-       <h4>If you are a new user start with Create Budget Below</h4>
-       <br/>
-       <NavLink to={`/typeentry/10`}>Enter Budget</NavLink>
-       <br/>
-       <NavLink to={`/typeentry/100`}>Enter Next Budget</NavLink>
-       <br/>
-       <NavLink to={'/newbudget'} >Create New Budget</NavLink>
-       <br/>
-       <NavLink to={'/newBudget'} >Update Current Budget</NavLink>
-       <br/>
-       <NavLink to={'/displaybudget'} >Display Current Budget</NavLink>
-
-     </div>
-    )
-
+    return (
+      <div>
+        <h2>Main Menu</h2>
+        <h3>Time to make your monthly budget!</h3>
+        <h4>If you are a new user start with Create Budget Below</h4>
+        <br />
+        <NavLink to={`/typeentry/10`}>Enter Budget</NavLink>
+        <br />
+        <NavLink to={"/newbudget"}>New Budget (long form)</NavLink>
+        <br />
+        <NavLink to={"/displaybudget"}>View/Change</NavLink>
+        <br />
+        <NavLink to={"/analysis"}>Analysis</NavLink>
+      </div>
+    );
   }
-
 }

@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 
 const DataContext = React.createContext({
-  user: '',
-  password: '',
+  user: "",
+  password: "",
   budget: [],
   types: [],
   handleNewUser: () => {},
@@ -10,6 +10,6 @@ const DataContext = React.createContext({
   handleUpdateAccountValue: () => {},
   handleTypeVisibility: () => {},
   handleUpdateBudget: () => {},
-})
+});
 
-export default DataContext
+export default DataContext;
