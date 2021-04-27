@@ -12,10 +12,6 @@ export default class MainMenu extends Component {
         <h3>Time to make your monthly budget!</h3>
         <h4>If you are a new user start with Create Budget Below</h4>
         <br />
-        <NavLink to={`/typeentry/10`}>Enter Budget</NavLink>
-        <br />
-        <NavLink to={"/newbudget"}>New Budget (long form)</NavLink>
-        <br />
         <NavLink to={"/displaybudget"}>View/Change</NavLink>
         <br />
         <NavLink to={"/analysis"}>Analysis</NavLink>

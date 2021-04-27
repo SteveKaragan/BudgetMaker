@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { Chart } from "react-google-charts";
-import { NavLink } from "react-router-dom";
 import DataContext from "./datacontext";
 
 export default class Analysis extends Component {
   static contextType = DataContext;
 
   render() {
-    //need help getting chart to render
+    
     const { types } = this.context;
     const { budget } = this.context;
     let typesNoIncome = types.filter((type) => type.type > 99);
@@ -34,7 +33,31 @@ export default class Analysis extends Component {
             height={"300px"}
             chartType="PieChart"
             loader={<div>Loading Chart</div>}
-            data={dataArr}
+            data={
+              [
+                  ["type", "amount"],
+                  ["Net Pay", 0],
+                  ["housing", 2000],
+                  ["Transportaiton", 1000],
+                  ["Food", 0],
+                  ["gobble", 500],
+                  ["Net Pay", 0],
+                  ["housing", 2000],
+                  ["Transportaiton", 1000],
+                  ["Food", 0],
+                  ["gobble", 500],
+                  ["Net Pay", 0],
+                  ["housing", 2000],
+                  ["Transportaiton", 1000],
+                  ["Food", 0],
+                  ["gobble", 500],
+                  ["Net Pay", 0],
+                  ["housing", 2000],
+                  ["Transportaiton", 1000],
+                  ["Food", 0],
+                  ["gobble", 500]
+                ]
+            }
             options={{
               title: "Types of Expense",
               // Just add this option

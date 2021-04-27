@@ -20,9 +20,9 @@ export default class DisplayBudget extends Component {
 
     let display = types.map((type) => {
       return (
-        <>
+        <div key={type.type}>
           <SubTotal key={type.type} type={type} budget={budget} total={total} />
-        </>
+        </div>
       );
     });
 

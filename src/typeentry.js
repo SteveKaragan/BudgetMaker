@@ -86,10 +86,6 @@ export default class TypeEntry extends Component {
           <br />
           <button type="submit">Save</button>
         </form>
-        {/* NavLink not working */}
-        <NavLink to={`/typeentry/${this.state.typeNum}`}>
-          Next (link doesn't work, why?)
-        </NavLink>
         <br />
         <NavLink to={`/displaybudget`}>View/Change</NavLink>
         <br />
